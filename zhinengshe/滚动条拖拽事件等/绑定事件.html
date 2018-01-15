@@ -18,9 +18,9 @@ function myAddEvent(obj, ev, fn)
 		obj.addEventListener(ev, fn, false);
 	}
 }
-
+//绑定事件，可以在同一个元素上绑定多个事件
 window.onload=function ()
-{
+{	//在oBtn 上绑定两个click事件
 	var oBtn=document.getElementById('btn1');
 	
 	myAddEvent(oBtn, 'click', function (){
