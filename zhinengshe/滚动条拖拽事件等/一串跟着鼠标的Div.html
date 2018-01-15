@@ -1,0 +1,125 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+div {width:10px; height:10px; background:red; position:absolute;}
+</style>
+<script>
+function getPos(ev)
+{
+	var scrollTop=document.documentElement.scrollTop||document.body.scrollTop;      //获取隐藏的高度
+	var scrollLeft=document.documentElement.scrollLeft||document.body.scrollLeft;   //获取隐藏的左侧的宽度
+	
+	return {x: ev.clientX+scrollLeft, y: ev.clientY+scrollTop};
+}
+
+//跟着鼠标的x和y坐标移动
+document.onmousemove=function (ev)
+{
+	var aDiv=document.getElementsByTagName('div');
+	var oEvent=ev||event;  //获取事件
+	
+	var pos=getPos(oEvent);
+	
+	//循环所有的div的位置跟着前一个div的位置走
+	for(var i=aDiv.length-1;i>0;i--)
+	{
+		
+		aDiv[i].style.left=aDiv[i-1].offsetLeft+'px';
+		aDiv[i].style.top=aDiv[i-1].offsetTop+'px';
+	}
+	//第一个div的x 和y的位置
+	aDiv[0].style.left=pos.x+'px';
+	aDiv[0].style.top=pos.y+'px';
+};
+</script>
+</head>
+
+<body>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+</body>
+</html>

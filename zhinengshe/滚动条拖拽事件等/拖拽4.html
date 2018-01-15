@@ -1,0 +1,77 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+#div1 {width:200px; height:200px; background:red; position:absolute;}
+</style>
+<script>
+window.onload=function ()
+{
+	var oDiv=document.getElementById('div1');
+	
+	var disX=0;
+	var disY=0;
+	
+	oDiv.onmousedown=function (ev)
+	{
+		var oEvent=ev||event;
+		
+		//clientX 鼠标在窗口中的x坐标 减去 div 的左边距  等于鼠标在div上的x坐标位置
+		disX=oEvent.clientX-oDiv.offsetLeft;
+		//clientY 鼠标在窗口中的y坐标 减去 div 的上边距  等于 鼠标在div上的y坐标位置
+		disY=oEvent.clientY-oDiv.offsetTop;
+		
+		document.onmousemove=function (ev)
+		{
+			var oEvent=ev||event;
+//计算div 的位置start
+
+			//鼠标在浏览器窗口中的x坐标 减去 鼠标在div上的x坐标位置 等于 div距离里浏览器左边边框的距离
+			var l=oEvent.clientX-disX; 
+			
+			//鼠标在浏览器窗口中的y坐标 减去 鼠标在div上的y坐标位置 等于 div距离里浏览器左边边框的距离
+			var t=oEvent.clientY-disY;
+		
+			
+			//当拖动的时候div左边的位置小于零停止左移
+			if(l<0){
+				l=0;
+			//当div右边的位置大于浏览器可视区的宽度减去div的宽度时
+			}else if(l>document.documentElement.clientWidth-oDiv.offsetWidth)
+			{	//div 的位置等于 浏览器可视区的宽度减去div的宽度时
+				l=document.documentElement.clientWidth-oDiv.offsetWidth;
+			}
+			//当拖动的时候div上边的位置小于零停止上移
+			if(t<0)
+			{
+				t=0;
+			//div 底部的距离大于浏览器可视区的下边时
+			}else if(t>document.documentElement.clientHeight-oDiv.offsetHeight)
+			{	//div 底部的位置等于浏览器可视区的高度减去DIV的高度
+				t=document.documentElement.clientHeight-oDiv.offsetHeight;
+			}
+			
+			oDiv.style.left=l+'px';
+			oDiv.style.top=t+'px';
+		//计算div 的位置end	
+		};
+		
+		document.onmouseup=function ()
+		{
+			document.onmousemove=null;
+			document.onmouseup=null;
+		};
+		
+		//屏蔽火狐的小bug(拖拽空div的时候出现一个div影子跟着鼠标)
+		return false;  
+	};
+};
+</script>
+</head>
+
+<body>
+<div id="div1"></div>
+</body>
+</html>
